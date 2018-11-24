@@ -1,0 +1,32 @@
+#bannerLogo {
+    font-family: 'Lobster', cursive;
+    font-size: 22pt;
+}
+
+.container {
+    margin: 15px;
+}
+
+.card {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.card-title {
+    font-size: 24pt;
+    margin-top: 25px;
+}
+
+.card-img {
+    opacity: .7;
+    object-fit: cover;
+    width: 100%;
+    height: 250px;
+}
+
+.titleDiv {
+    font-family: 'Lobster', cursive;
+    font-size: 34pt;
+    text-align: center;
+    margin-bottom: 20px;
+}
