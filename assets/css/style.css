@@ -1,5 +1,5 @@
 #bannerLogo {
-    font-family: 'Lobster', cursive;
+    font-family: 'Pacifico', cursive;
     font-size: 22pt;
 }
 
@@ -12,8 +12,22 @@
     margin-bottom: 25px;
 }
 
+.about, .hoods {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: bold;
+}
+
+.card:hover {
+    opacity: .8;
+}
+
+.card-title:hover {
+    text-decoration-line: underline;
+    cursor: pointer;
+}
+
 .card-title {
-    font-size: 24pt;
+    font-size: 23pt;
     margin-top: 25px;
 }
 
@@ -25,8 +39,29 @@
 }
 
 .titleDiv {
-    font-family: 'Lobster', cursive;
+    font-family: 'Pacifico', cursive;
     font-size: 34pt;
     text-align: center;
     margin-bottom: 20px;
+}
+
+/* some media queries */
+
+@media only screen and (max-width: 991px) {
+    .hoods {
+        font-size: 18pt;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .hoods {
+        font-size: 14pt;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    .hoods {
+        font-size: 23pt;
+        letter-spacing: 3px;
+    }
 }
