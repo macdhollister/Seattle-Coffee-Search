@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Seattle Coffee Search</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC|Pacifico" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" id="bannerLogo" href="#">Seattle Coffee Search</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Search by Neighborhood<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About SCS</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-12 titleDiv">
+                Search By Neighborhood
+            </div>
+        </div>
+
+
+        <div class="row">
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/capHill1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">Capitol Hill</h>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/belltown1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">Belltown</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/downtown1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">Downtown</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/fremont1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">Fremont</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/ballard1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">Ballard</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/queenanne1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">Queen Anne</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/udistrict1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">University District</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/ravenna1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">Ravenna</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/laurelhurst1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">Laurelhurst</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/georgetown1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">Georgetown</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/pioneersquare1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">Pioneer Square</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/columbiacity1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">Columbia City</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/beaconhill1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">Beacon Hill</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/mountbaker1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">Mount Baker</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/westseattle1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">West Seattle</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/northadmiral1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">Admiral</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/alki1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">Alki</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/fauntleroy1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">Fauntleroy</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/junction1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">Junction</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/madisonvalley1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">Madison Valley</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/leschi1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">Leschi</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/rainierbeach1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">Rainier Beach</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/sewardpark1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">Seward Park</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/southpark1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">South Park</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/montlake1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">Montlake</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/madrona1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">Madrona</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/madisonpark1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">Madison Park</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/intdistrict1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">International District</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/firsthill1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">First Hill</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/eastlake1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">Eastlake</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/centraldistrict1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">Central District</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/denny-blaine1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">Denny-Blaine</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/portagebay1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">Portage Bay</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/blueridge1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">Blue Ridge/North Beach</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/wallingford1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">Wallingford</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/crownhill1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">Crown Hill</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/greenlake1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">Green Lake</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/greenwood1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">Greenwood</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/hallerlake1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">Haller Lake</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/lowerqueenanne1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">Lower Queen Anne</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/magnolia1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">Magnolia</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/phinneyridge1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">Phinney Ridge</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/northgate1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">Northgate</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/westlake1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">Westlake</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/sodo1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">Sodo</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/wedgwood1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">Wedgwood</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/mapleleaf1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">Maple Leaf</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm">
+                <div class="card bg-dark text-white">
+                    <img class="card-img" src="assets/images/lakecity1.jpg" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h5 class="card-title hoods">Lake City</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script type="text/javascript" src="assets/javascript/app.js"></script>
+
+</body>
+
+</html>
