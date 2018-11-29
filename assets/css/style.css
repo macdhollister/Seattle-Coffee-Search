@@ -45,6 +45,21 @@
     margin-bottom: 20px;
 }
 
+#mapContainer {
+    display: none;
+    margin: auto;
+    height: 70vh;
+    width: 80%;
+}
+
+#map {
+    /* margin: auto;
+    height: 70vh;
+    width: 80%; */
+    height: 100%;
+    width: 100%;
+}
+
 /* some media queries */
 
 @media only screen and (max-width: 991px) {
