@@ -1,5 +1,8 @@
 let map;
 let subHoods = [];
+let mapMarkers = [];
+let businessData = {};
+
 
 const nHoodsLocations = {
     "Northgate" : {lat: 47.708142 , lng: -122.327329},
@@ -9,7 +12,7 @@ const nHoodsLocations = {
     "Ravenna": { lat: 47.675796, lng: -122.306529},
     "Sandpoint": { lat: 47.681558, lng: -122.262278},
     "Ballard": { lat: 47.675965, lng: -122.379027},
-    "Greenlake": { lat: 47.679638, lng: -122.334963},
+    "Green Lake": { lat: 47.679638, lng: -122.334963},
     "University District": { lat: 47.661215, lng: -122.311804},
     "Wallingford": { lat: 47.661355, lng: -122.335859},
     "Fremont": { lat: 47.656084, lng: -122.353975},
@@ -21,15 +24,15 @@ const nHoodsLocations = {
     "South Lake Union": { lat: 47.623162, lng: -122.336420},
     "Capitol Hill": { lat: 47.619905, lng: -122.320868},
     "Montlake": { lat: 47.640297, lng: -122.302942},
-    "Madison": { lat: 47.632587, lng: -122.291663},
+    "Madison Park": { lat: 47.632587, lng: -122.291663},
     "Central District": { lat: 47.604304, lng: -122.302240},
     "Belltown": { lat: 47.615330, lng: -122.343963},
     "Downtown": { lat: 47.610372, lng: -122.336615},
     "Pioneer Square": { lat: 47.601144, lng: -122.332315},
     "International District": { lat: 47.597484, lng: -122.323778},
-    "SODO": { lat: 47.580476, lng: -122.334284},
+    "Sodo": { lat: 47.580476, lng: -122.334284},
     "Beacon Hill": { lat: 47.565133, lng: -122.311002},
-    "MT Baker": { lat: 47.578270, lng: -122.288029},
+    "Mount Baker": { lat: 47.578270, lng: -122.288029},
     "Columbia City": { lat: 47.559462, lng: -122.285971},
     "Georgetown": { lat: 47.546533, lng: -122.325232},
     "Rainier Valley": { lat: 47.536876, lng: -122.270445},
@@ -38,6 +41,41 @@ const nHoodsLocations = {
     "South Park": { lat: 47.527776, lng: -122.325293},
     "Seward Park": { lat: 47.551145, lng: -122.265555},
     "Rainier Beach": { lat: 47.513288, lng: -122.259159},
+    
+    /*
+    Need Coordinates for all of the following:
+
+    Laurelhurst
+    Mount Baker
+    Admiral
+    Alki
+    Fauntleroy
+    Junction
+    Madison Valley
+    Leschi
+    Madrona
+    First Hill
+    Denny-Blaine
+    Portage Bay
+    Blue Ridge
+    Crown Hill
+    Haller Lake
+    Lower Queen Anne
+    Westlake
+    Wedgwood
+    Maple Leaf
+
+    Additionally, we need cards for the following:
+
+    Roosevelt
+    Sandpoint
+    Interbay
+    South Lake Union
+    Rainier Valley
+    Delridge
+
+
+    */
 };
 
 $(document).on('click', '.nHood', function() {
@@ -47,8 +85,10 @@ $(document).on('click', '.nHood', function() {
     $('.nHood').toggle();
     $('#mapContainer').toggle();
 
+    // Builds Map around selected neighborhood
     newNeighborhood(neighborhood);
-    // Build google map with selected neighborhood
+
+    // Add the map markers
 })
 
 $(document).on('click', '#pickAnother', function() {
@@ -97,6 +137,9 @@ function initMap() {
             }
         }
         console.log(inHood);
+        if (inHood) {
+            addMarker(e.latLng);
+        }
     })
 }
 
@@ -126,4 +169,23 @@ function newNeighborhood(name) {
         )
         subHoods[i].setMap(map);
     }
+}
+
+// Adds a pushpin onto the map takes a {lat: num, lng: num2} object
+function addMarker(coords) {
+    var marker = new google.maps.Marker({
+        position:coords,
+        map:map,
+    });
+
+    mapMarkers.push(marker);
+}
+
+// Removes all pushpins from the map
+function removeMarkers() {
+    for (let marker of mapMarkers) {
+        marker.setMap(null);
+    }
+
+    mapMarkers = [];
 }
