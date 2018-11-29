@@ -80,6 +80,7 @@ const nHoodsLocations = {
 $(document).on('click', '.nHood', function() {
     let neighborhood = $(this).attr('name');
     console.log(neighborhood);
+    removeMarkers();
 
     $('.nHood').toggle();
     $('#mapContainer').toggle();
