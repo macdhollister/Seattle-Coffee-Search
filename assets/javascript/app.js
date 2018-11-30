@@ -64,16 +64,6 @@ const nHoodsLocations = {
     Wedgwood
     Maple Leaf
 
-    Additionally, we need cards for the following:
-
-    Roosevelt
-    Sandpoint
-    Interbay
-    South Lake Union
-    Rainier Valley
-    Delridge
-
-
     */
 };
 
@@ -119,6 +109,7 @@ function initMap() {
                 let businessID = response.businesses[i].id;
 
                 businessData[businessID] = {
+                    ID : businessID,
                     name : name,
                     address : address,
                     yelpRating : rating,
@@ -131,7 +122,7 @@ function initMap() {
                     }
                 }
 
-                addMarker(businessData[businessID].coordinates);
+                addMarker(businessData[businessID]);
             }
         });
     })
@@ -264,10 +255,25 @@ function newNeighborhood(name) {
 }
 
 // Adds a pushpin onto the map takes a {lat: num, lng: num2} object
-function addMarker(coords) {
+function addMarker(business) {
     var marker = new google.maps.Marker({
-        position:coords,
+        position:business.coordinates,
         map:map,
+    });
+
+    var infoWindow = new google.maps.InfoWindow({
+        content: `
+        <div><strong>${business.name}</strong></div>
+        <div>Rating: ${business.yelpRating}</div>
+        <div>Address: ${business.address}</div>
+        <div>Phone Number: ${business.phone}</div>
+        <img class="businessImg" src="${business.imageURL}">
+        <div data-ID="${business.ID}"></div>
+        `
+    })
+
+    marker.addListener('click', function() {
+        infoWindow.open(map, marker);
     });
 
     mapMarkers.push(marker);
