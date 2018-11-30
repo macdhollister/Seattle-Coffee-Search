@@ -161,6 +161,7 @@ function initMap() {
                 let lat = response.businesses[i].coordinates.latitude;
                 let lng = response.businesses[i].coordinates.longitude;
                 let businessID = response.businesses[i].id;
+                // let pic = response.business[i].photo;
 
                 businessData[businessID] = {
                     name : name,
@@ -258,6 +259,7 @@ function addMarker(business) {
     });
 
     var infoWindow = new google.maps.InfoWindow({
+        maxWidth: 200,
         content: `
         <div><strong>${business.name}</strong></div>
         <div>Rating: ${business.yelpRating}</div>
@@ -265,8 +267,12 @@ function addMarker(business) {
         <div>Phone Number: ${business.phone}</div>
         <img class="businessImg" src="${business.imageURL}">
         <div data-ID="${business.ID}"></div>
+        
         `
+       
     })
+
+    //infoWindow.addclass("infoWindow")
 
     marker.addListener('click', function() {
         infoWindow.open(map, marker);
