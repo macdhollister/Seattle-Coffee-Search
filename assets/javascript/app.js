@@ -66,8 +66,8 @@ function initMap() {
         center: {lat: 47.605877, lng: -122.329723},
         zoom: 11,
     });
-
-    $(document).on('click touchstart', '.nHood', function() {
+////// practicing touch end
+    $(document).on('click touchend', '.nHood', function() {
         let neighborhood = $(this).attr('name');
         console.log(neighborhood);
         removeMarkers();
