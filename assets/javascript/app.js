@@ -77,67 +77,139 @@ const nHoodsLocations = {
     */
 };
 
-$(document).on('click', '.nHood', function() {
-    let neighborhood = $(this).attr('name');
-    console.log(neighborhood);
-    removeMarkers();
-
-    $('.nHood').toggle();
-    $('#mapContainer').toggle();
-
-    // Builds Map around selected neighborhood
-    newNeighborhood(neighborhood);
-
-    // Ajax call for getting data
-    let lat = nHoodsLocations[neighborhood].lat;
-    let lon = nHoodsLocations[neighborhood].lng;
-    let queryURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=coffee&latitude=" + lat + "&longitude=" + lon + "&limit=50&sort_by=distance&radius=6440";
-
-    $.ajax({
-        url: queryURL,
-        headers: {
-            'Authorization': 'Bearer wserwb2f6DkPSrPHIvgg7Oai3KdprWqcORgEt_muTJl3rR_Dg12fU4vGUmQr5ANy1enRZsdBYV_Q8SQO1Mup_zPFjuwRqXyuXxEU_etmk4E3leNnxAEw5WdMXEvuW3Yx',
-        },
-        method: "GET",
-    })
-    .then(function (response) {
-        // var results = JSON.stringify(response);
-        // let yelpObject = { name: response.businesses[i].name, };
-        // console.log(results);
-
-        for (let i = 0; i < response.businesses.length; i++) {
-            let name = response.businesses[i].name;
-            let rating = response.businesses[i].rating;
-            let phone = response.businesses[i].phone;
-            let address = response.businesses[i].location.address1;
-            let foto = response.businesses[i].image_url;
-            let closed = response.businesses[i].is_closed;
-            let lat = response.businesses[i].coordinates.latitude;
-            let lng = response.businesses[i].coordinates.longitude;
-            let businessID = response.businesses[i].id;
-
-            businessData[businessID] = {
-                name : name,
-                address : address,
-                yelpRating : rating,
-                phone : phone,
-                imageURL : foto,
-                isClosed : closed,
-                coordinates : {
-                    lat: lat,
-                    lng: lng
-                }
-            }
-            console.log(businessData);
-            addMarker(businessData[businessID].coordinates);
-        }
+function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 47.605877, lng: -122.329723},
+        zoom: 11,
     });
-})
 
-$(document).on('click', '#pickAnother', function() {
-    $('#mapContainer').toggle();
-    $('.nHood').toggle();
-})
+    $(document).on('click', '.nHood', function() {
+        let neighborhood = $(this).attr('name');
+        console.log(neighborhood);
+        removeMarkers();
+
+        $('.nHood').toggle();
+        $('#mapContainer').toggle();
+
+        // Builds Map around selected neighborhood
+        newNeighborhood(neighborhood);
+
+        // Ajax call for getting data
+        let lat = nHoodsLocations[neighborhood].lat;
+        let lon = nHoodsLocations[neighborhood].lng;
+        let queryURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=coffee&latitude=" + lat + "&longitude=" + lon + "&limit=50&sort_by=distance&radius=6440";
+
+        $.ajax({
+            url: queryURL,
+            headers: {
+                'Authorization': 'Bearer wserwb2f6DkPSrPHIvgg7Oai3KdprWqcORgEt_muTJl3rR_Dg12fU4vGUmQr5ANy1enRZsdBYV_Q8SQO1Mup_zPFjuwRqXyuXxEU_etmk4E3leNnxAEw5WdMXEvuW3Yx',
+            },
+            method: "GET",
+        })
+        .then(function (response) {
+            for (let i = 0; i < response.businesses.length; i++) {
+                let name = response.businesses[i].name;
+                let rating = response.businesses[i].rating;
+                let phone = response.businesses[i].phone;
+                let address = response.businesses[i].location.address1;
+                let foto = response.businesses[i].image_url;
+                let closed = response.businesses[i].is_closed;
+                let lat = response.businesses[i].coordinates.latitude;
+                let lng = response.businesses[i].coordinates.longitude;
+                let businessID = response.businesses[i].id;
+
+                businessData[businessID] = {
+                    name : name,
+                    address : address,
+                    yelpRating : rating,
+                    phone : phone,
+                    imageURL : foto,
+                    isClosed : closed,
+                    coordinates : {
+                        lat: lat,
+                        lng: lng
+                    }
+                }
+
+                addMarker(businessData[businessID].coordinates);
+            }
+        });
+    })
+
+    // Checks if the given coordinates are inside the current neighborhood
+    function inNeighborhood(coords) {
+        let inHood = false;
+        for (let i = 0; i < subHoods.length; i++) {
+            if (google.maps.geometry.poly.containsLocation(coords, subHoods[i])) {
+                inHood = true;
+            }
+        }
+
+        return inHood;
+    }
+
+    google.maps.event.addListener(map, 'click', function(e) {
+        let lat = e.latLng.lat();
+        let lon = e.latLng.lng();
+        console.log(lat, lon)
+        let queryURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=coffee&latitude=" + lat + "&longitude=" + lon + "&limit=50&sort_by=distance&radius=6440";
+
+        console.log(inNeighborhood(e.latLng));
+
+        $.ajax({
+            url: queryURL,
+            headers: {
+                'Authorization': 'Bearer wserwb2f6DkPSrPHIvgg7Oai3KdprWqcORgEt_muTJl3rR_Dg12fU4vGUmQr5ANy1enRZsdBYV_Q8SQO1Mup_zPFjuwRqXyuXxEU_etmk4E3leNnxAEw5WdMXEvuW3Yx',
+            },
+            method: "GET",
+        })
+        .then(function (response) {
+            for (let i = 0; i < response.businesses.length; i++) {
+                let name = response.businesses[i].name;
+                let rating = response.businesses[i].rating;
+                let phone = response.businesses[i].phone;
+                let address = response.businesses[i].location.address1;
+                let foto = response.businesses[i].image_url;
+                let closed = response.businesses[i].is_closed;
+                let lat = response.businesses[i].coordinates.latitude;
+                let lng = response.businesses[i].coordinates.longitude;
+                let businessID = response.businesses[i].id;
+
+                businessData[businessID] = {
+                    name : name,
+                    address : address,
+                    yelpRating : rating,
+                    phone : phone,
+                    imageURL : foto,
+                    isClosed : closed,
+                    coordinates : {
+                        lat: lat,
+                        lng: lng
+                    }
+                }
+
+                addMarker(businessData[businessID].coordinates);
+            }
+        });
+    })
+
+    $(document).on('click', '#pickAnother', function() {
+        $('#mapContainer').toggle();
+        $('.nHood').toggle();
+    })
+
+    // Checks if the given coordinates are inside the current neighborhood
+    function inNeighborhood(coords) {
+        let inHood = false;
+        for (let i = 0; i < subHoods.length; i++) {
+            if (google.maps.geometry.poly.containsLocation(coords, subHoods[i])) {
+                inHood = true;
+            }
+        }
+
+        return inHood;
+    }
+}
 
 // Returns an array of coordinate bounds for the matching neighborhood string
 function getCoordinates(district) {
@@ -161,29 +233,6 @@ function formatCoordinates(coords) {
     }
 
     return formattedCoords;
-}
-
-// Initiates Google Map
-function initMap() {
-    map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: 47.605877, lng: -122.329723},
-        zoom: 11,
-    });
-
-    // On click, logs true for inside the neighborhood, false for outside
-    // This will be changed away from a 'click' function eventually
-    google.maps.event.addListener(map, 'click', function(e) {
-        let inHood = false;
-        for (let i = 0; i < subHoods.length; i++) {
-            if (google.maps.geometry.poly.containsLocation(e.latLng, subHoods[i])) {
-                inHood = true;
-            }
-        }
-        console.log(inHood);
-        if (inHood) {
-            addMarker(e.latLng);
-        }
-    })
 }
 
 // changes Map display to input neighborhood
