@@ -258,6 +258,7 @@ function addMarker(business) {
     });
 
     var infoWindow = new google.maps.InfoWindow({
+        maxWidth: 200,
         content: `
         <div><strong>${business.name}</strong></div>
         <div>Rating: ${business.yelpRating}</div>
