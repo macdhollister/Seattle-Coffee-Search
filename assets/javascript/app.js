@@ -268,10 +268,21 @@ function addMarker(coords) {
     var marker = new google.maps.Marker({
         position:coords,
         map:map,
+        content: contentString
     });
 
     mapMarkers.push(marker);
 }
+
+
+
+var infowindow = new google.maps.InfoWindow({
+    content: <h1>businessData</h1>
+  });
+
+  marker.addListener('click', function() {
+    infowindow.open(map, marker);
+  });
 
 // Removes all pushpins from the map
 function removeMarkers() {
