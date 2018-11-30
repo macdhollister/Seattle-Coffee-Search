@@ -101,6 +101,8 @@ function initMap() {
                 let lat = response.businesses[i].coordinates.latitude;
                 let lng = response.businesses[i].coordinates.longitude;
                 let businessID = response.businesses[i].id;
+                // let pic = response.business[i].photos[0];
+                // console.log(pic);
 
                 businessData[businessID] = {
                     ID : businessID,
