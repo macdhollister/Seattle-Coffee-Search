@@ -40,31 +40,25 @@ const nHoodsLocations = {
     "South Park": { lat: 47.527776, lng: -122.325293},
     "Seward Park": { lat: 47.551145, lng: -122.265555},
     "Rainier Beach": { lat: 47.513288, lng: -122.259159},
-    
-    /*
-    Need Coordinates for all of the following:
-
-    Laurelhurst
-    Mount Baker
-    Admiral
-    Alki
-    Fauntleroy
-    Junction
-    Madison Valley
-    Leschi
-    Madrona
-    First Hill
-    Denny-Blaine
-    Portage Bay
-    Blue Ridge
-    Crown Hill
-    Haller Lake
-    Lower Queen Anne
-    Westlake
-    Wedgwood
-    Maple Leaf
-
-    */
+    "Laurelhurst": { lat: 47.658700, lng: -122.279306},
+    "Mount Baker": { lat: 47.583333, lng: -122.292917},
+    "Admiral": { lat: 47.581194, lng:  -122.387151},
+    "Alki": { lat: 47.575856, lng: -122.410591},
+    "Fauntleroy": { lat: 47.523843, lng: -122.383132},
+    "Junction": { lat: 47.561231, lng: -122.386808},
+    "Madison Valley": { lat: 47.623325, lng: -122.296425},
+    "Leschi": { lat: 47.599431, lng: -122.292540},
+    "Madrona": { lat: 47.613299, lng: -122.289294},
+    "First Hill": { lat: 47.609045, lng: -122.325034},
+    "Denny-Blaine": { lat: 47.622426, lng: -122.285820},
+    "Portage Bay": { lat: 47.648145, lng: -122.314553},
+    "Blue Ridge": { lat: 47.699654, lng: -122.387422},
+    "Crown Hill": { lat: 47.696849, lng: -122.371896},
+    "Haller Lake": { lat: 47.719854, lng: -122.333871},
+    "Lower Queen Anne": { lat: 47.623560, lng: -122.355767},
+    "Westlake": { lat: 47.631750, lng: -122.341028},
+    "Wedgwood": { lat: 47.691076, lng: -122.290732},
+    "Maple Leaf": { lat: 47.695884, lng: -122.317588},
 };
 
 function initMap() {
