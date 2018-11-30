@@ -83,7 +83,7 @@ function initMap() {
         zoom: 11,
     });
 
-    $(document).on('click', '.nHood', function() {
+    $(document).on('click touchstart', '.nHood', function() {
         let neighborhood = $(this).attr('name');
         console.log(neighborhood);
         removeMarkers();
