@@ -2,6 +2,7 @@ let map;
 let subHoods = [];
 let mapMarkers = [];
 let businessData = {};
+let overlay = $('#overlay');
 const nHoodsLocations = {
     "Northgate" : {lat: 47.708142 , lng: -122.327329},
     "Lake City": { lat: 47.717412, lng: -122.296243},
@@ -67,6 +68,7 @@ function initMap() {
     });
 
     $(document).on('click touchstart', '.nHood', function() {
+        overlay.show();
         let neighborhood = $(this).attr('name');
         console.log(neighborhood);
         removeMarkers();
@@ -119,6 +121,7 @@ function initMap() {
 
                 addMarker(businessData[businessID]);
             }
+            overlay.hide();
         });
     })
 
@@ -135,6 +138,7 @@ function initMap() {
     }
 
     google.maps.event.addListener(map, 'click', function(e) {
+        overlay.show();
         let lat = e.latLng.lat();
         let lon = e.latLng.lng();
         console.log(lat, lon)
@@ -176,6 +180,7 @@ function initMap() {
 
                 addMarker(businessData[businessID]);
             }
+            overlay.hide();
         });
     })
 
