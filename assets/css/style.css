@@ -17,6 +17,10 @@
     font-weight: bold;
 }
 
+.aboutDiv {
+    padding: 30px;
+}
+
 .card:hover {
     opacity: .8;
 }
