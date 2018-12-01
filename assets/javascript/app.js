@@ -2,7 +2,6 @@ let map;
 let subHoods = [];
 let mapMarkers = [];
 let businessData = {};
-let isScrolling = false;
 const nHoodsLocations = {
     "Northgate" : {lat: 47.708142 , lng: -122.327329},
     "Lake City": { lat: 47.717412, lng: -122.296243},
