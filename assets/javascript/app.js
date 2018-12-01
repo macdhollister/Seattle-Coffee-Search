@@ -2,6 +2,7 @@ let map;
 let subHoods = [];
 let mapMarkers = [];
 let businessData = {};
+let touchmoved;
 let overlay = $('#overlay');
 const nHoodsLocations = {
     "Northgate" : {lat: 47.708142 , lng: -122.327329},
@@ -67,62 +68,65 @@ function initMap() {
         zoom: 11,
     });
 
-    $(document).on('click touchstart', '.nHood', function() {
-        overlay.show();
-        let neighborhood = $(this).attr('name');
-        console.log(neighborhood);
-        removeMarkers();
+    $(document).on('click touchend', '.nHood', function() {
+        if (!touchmoved) {
+            overlay.show();
+            let neighborhood = $(this).attr('name');
+            removeMarkers();
 
-        $('.nHood').toggle();
-        $('#mapContainer').toggle();
+            $('.nHood').toggle();
+            $('#mapContainer').toggle();
 
-        // Builds Map around selected neighborhood
-        newNeighborhood(neighborhood);
+            // Builds Map around selected neighborhood
+            newNeighborhood(neighborhood);
 
-        // Ajax call for getting data
-        let lat = nHoodsLocations[neighborhood].lat;
-        let lon = nHoodsLocations[neighborhood].lng;
-        let queryURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=coffee&latitude=" + lat + "&longitude=" + lon + "&limit=50&sort_by=distance&radius=6440";
+            // Ajax call for getting data
+            let lat = nHoodsLocations[neighborhood].lat;
+            let lon = nHoodsLocations[neighborhood].lng;
+            let queryURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=coffee&latitude=" + lat + "&longitude=" + lon + "&limit=50&sort_by=distance&radius=6440";
 
-        $.ajax({
-            url: queryURL,
-            headers: {
-                'Authorization': 'Bearer wserwb2f6DkPSrPHIvgg7Oai3KdprWqcORgEt_muTJl3rR_Dg12fU4vGUmQr5ANy1enRZsdBYV_Q8SQO1Mup_zPFjuwRqXyuXxEU_etmk4E3leNnxAEw5WdMXEvuW3Yx',
-            },
-            method: "GET",
-        })
-        .then(function (response) {
-            for (let i = 0; i < response.businesses.length; i++) {
-                let name = response.businesses[i].name;
-                let rating = response.businesses[i].rating;
-                let phone = response.businesses[i].phone;
-                let address = response.businesses[i].location.address1;
-                let foto = response.businesses[i].image_url;
-                let closed = response.businesses[i].is_closed;
-                let lat = response.businesses[i].coordinates.latitude;
-                let lng = response.businesses[i].coordinates.longitude;
-                let businessID = response.businesses[i].id;
-                // let pic = response.business[i].photos[0];
-                // console.log(pic);
+            $.ajax({
+                url: queryURL,
+                headers: {
+                    'Authorization': 'Bearer wserwb2f6DkPSrPHIvgg7Oai3KdprWqcORgEt_muTJl3rR_Dg12fU4vGUmQr5ANy1enRZsdBYV_Q8SQO1Mup_zPFjuwRqXyuXxEU_etmk4E3leNnxAEw5WdMXEvuW3Yx',
+                },
+                method: "GET",
+            })
+            .then(function (response) {
+                for (let i = 0; i < response.businesses.length; i++) {
+                    let name = response.businesses[i].name;
+                    let rating = response.businesses[i].rating;
+                    let phone = response.businesses[i].phone;
+                    let address = response.businesses[i].location.address1;
+                    let foto = response.businesses[i].image_url;
+                    let closed = response.businesses[i].is_closed;
+                    let lat = response.businesses[i].coordinates.latitude;
+                    let lng = response.businesses[i].coordinates.longitude;
+                    let businessID = response.businesses[i].id;
 
-                businessData[businessID] = {
-                    ID : businessID,
-                    name : name,
-                    address : address,
-                    yelpRating : rating,
-                    phone : phone,
-                    imageURL : foto,
-                    isClosed : closed,
-                    coordinates : {
-                        lat: lat,
-                        lng: lng
+                    businessData[businessID] = {
+                        ID : businessID,
+                        name : name,
+                        address : address,
+                        yelpRating : rating,
+                        phone : phone,
+                        imageURL : foto,
+                        isClosed : closed,
+                        coordinates : {
+                            lat: lat,
+                            lng: lng
+                        }
                     }
-                }
 
-                addMarker(businessData[businessID]);
-            }
-            overlay.hide();
-        });
+                    addMarker(businessData[businessID]);
+                }
+                overlay.hide();
+            });
+        }
+    }).on('touchmove', function() {
+        touchmoved = true;
+    }).on('touchstart', function() {
+        touchmoved = false;
     })
 
     // Checks if the given coordinates are inside the current neighborhood
@@ -141,10 +145,7 @@ function initMap() {
         overlay.show();
         let lat = e.latLng.lat();
         let lon = e.latLng.lng();
-        console.log(lat, lon)
         let queryURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=coffee&latitude=" + lat + "&longitude=" + lon + "&limit=50&sort_by=distance&radius=6440";
-
-        console.log(inNeighborhood(e.latLng));
 
         $.ajax({
             url: queryURL,
