@@ -83,6 +83,16 @@
     z-index: 0;
 }
 
+.businessImg{
+    height: 47%;
+    width: 47%;
+}
+
+.description {
+    text-align: justify;
+    text-indent: 50px;
+}
+
 /* some media queries */
 
 @media only screen and (max-width: 991px) {
@@ -102,9 +112,4 @@
         font-size: 23pt;
         letter-spacing: 3px;
     }
-}
-
-.businessImg{
-    height: 47%;
-    width: 47%;
 }
