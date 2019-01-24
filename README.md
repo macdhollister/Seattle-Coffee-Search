@@ -1,3 +1,3 @@
 # Seattle Coffee Search
 
-https://macdhollister.github.io/seattle-coffee-search/
+https://macdhollister.github.io/Seattle-Coffee-Search/
