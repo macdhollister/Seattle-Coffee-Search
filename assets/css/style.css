@@ -93,18 +93,6 @@
     text-indent: 50px;
 }
 
-.footer {
-    width: 100%;
-    margin-bottom: 0px;
-    color: whitesmoke;
-    text-align: center;
-    height: 110px;
-}
-
-#footerText {
-    margin-top: 50px;
-}
-
 #aboutDiv {
     padding: 30px;
 }
