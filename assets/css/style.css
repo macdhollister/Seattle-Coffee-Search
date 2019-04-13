@@ -93,6 +93,18 @@
     text-indent: 50px;
 }
 
+.footer {
+    width: 100%;
+    margin-bottom: 0px;
+    color: whitesmoke;
+    text-align: center;
+    height: 110px;
+}
+
+#footerText {
+    margin-top: 50px;
+}
+
 /* some media queries */
 
 @media only screen and (max-width: 991px) {
