@@ -105,6 +105,10 @@
     margin-top: 50px;
 }
 
+#aboutDiv {
+    padding: 30px;
+}
+
 /* some media queries */
 
 @media only screen and (max-width: 991px) {
